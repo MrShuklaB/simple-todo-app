@@ -32,6 +32,11 @@ let GlobalStyles = createGlobalStyle`
   #root, #__next {
     isolation: isolate;
   }
+  #__next {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+  }
 `;
 
 export default GlobalStyles;
