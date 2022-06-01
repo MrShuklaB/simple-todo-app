@@ -1,4 +1,4 @@
-import { prisma } from "db";
+import { prisma } from "utils/db";
 
 async function seed() {
   await prisma.todo.create({
