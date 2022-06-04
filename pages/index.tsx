@@ -17,8 +17,6 @@ let Home: NextPage = () => {
   );
   let { data, status, error } = todosQuery;
 
-  console.log({ status });
-
   return (
     <React.Fragment>
       <Head>
