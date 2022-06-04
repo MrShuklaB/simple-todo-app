@@ -33,9 +33,31 @@ let GlobalStyles = createGlobalStyle`
     isolation: isolate;
   }
   #__next {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
     min-height: 100vh;
+    display: grid;
+    place-items: center;
+    text-transform: uppercase;
+    background-image: linear-gradient(
+      65deg,
+      hsl(264deg 100% 80%) 0%,
+      hsl(282deg 86% 77%) 15%,
+      hsl(301deg 73% 75%) 27%,
+      hsl(316deg 100% 78%) 38%,
+      hsl(325deg 100% 78%) 47%,
+      hsl(334deg 100% 79%) 56%,
+      hsl(342deg 100% 79%) 64%,
+      hsl(356deg 100% 80%) 71%,
+      hsl(9deg 100% 79%) 77%,
+      hsl(20deg 100% 77%) 84%,
+      hsl(28deg 100% 75%) 89%,
+      hsl(36deg 100% 73%) 95%,
+      hsl(43deg 100% 71%) 100%
+    );
+    background-repeat: repeat;
+  }
+
+  :root {
+    --transition-hover: all 0.2s ease-out;
   }
 `;
 
