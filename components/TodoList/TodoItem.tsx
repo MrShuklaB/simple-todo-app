@@ -24,7 +24,12 @@ let Label = styled.label`
 
 let Checkbox = styled.input``;
 
-let Text = styled.p``;
+interface TextProps {
+  readonly isDone: boolean;
+}
+let Text = styled.p<TextProps>`
+  text-decoration: ${props => (props.isDone ? "line-through" : undefined)};
+`;
 
 let Delete = styled.button`
   background-color: transparent;
@@ -66,7 +71,7 @@ function TodoItem({ todo }: ComponentProps) {
           onChange={() => updateMutation.mutate(id)}
           tabIndex={0}
         />
-        <Text>{text}</Text>
+        <Text isDone={isDone}>{text}</Text>
       </Label>
       <Delete onClick={() => deleteMutation.mutate(id)}>
         <Trash2 aria-label="delete todo" color="hsla(4, 82%, 52%)" />
