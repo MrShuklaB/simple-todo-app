@@ -68,7 +68,7 @@ function TodoItem({ todo }: ComponentProps) {
           name={id}
           id={id}
           checked={isDone}
-          onChange={() => updateMutation.mutate(id)}
+          onChange={() => updateMutation.mutate({ id, text, isDone: !isDone })}
           tabIndex={0}
         />
         <Text isDone={isDone}>{text}</Text>

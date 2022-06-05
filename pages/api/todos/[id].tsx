@@ -7,18 +7,24 @@ export default async function handler(
 ) {
   let requestMethod = req.method?.toLocaleUpperCase();
   let id = req.query.id as string;
+  let { text, isDone } = req.body as { text: string; isDone: boolean };
 
   if (requestMethod === "PUT") {
     let todoToUpdate = await prisma.todo.findUnique({
       where: { id },
-      select: { isDone: true },
+      select: { isDone: true, text: true, id: true },
     });
+
+    if (!todoToUpdate?.id) {
+      return res.status(404).json({});
+    }
     await prisma.todo.update({
       where: {
         id,
       },
       data: {
-        isDone: !todoToUpdate?.isDone,
+        text,
+        isDone,
       },
     });
 
