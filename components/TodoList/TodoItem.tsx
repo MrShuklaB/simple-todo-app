@@ -60,7 +60,7 @@ function TodoItem({ todo }: ComponentProps) {
       layout
       initial={{ opacity: 0, translateY: -35 }}
       animate={{ opacity: 1, translateY: 0 }}
-      exit={{ opacity: 0, translateY: 20 }}
+      exit={{ opacity: 0, translateX: 20 }}
     >
       <Label htmlFor={id}>
         <Checkbox
