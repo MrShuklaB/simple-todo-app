@@ -10,6 +10,7 @@ import Head from "next/head";
 import * as React from "react";
 import { useQuery } from "react-query";
 import styled from "styled-components";
+import type { Todo } from "types";
 
 let NoTodosText = styled.p`
   padding: 2em;
@@ -18,11 +19,28 @@ let NoTodosText = styled.p`
 `;
 
 let Home: NextPage = () => {
-  let todosQuery = useQuery<AxiosResponse, AxiosError<Error>>(
+  let todosQuery = useQuery<AxiosResponse<Todo[]>, AxiosError<Error>>(
     "get-todos",
     getTodos
   );
   let { data, status, error } = todosQuery;
+
+  // let order: {
+  //   id: string;
+  //   shortOrderId: string;
+  //   fulfillments: {
+  //     id: string;
+  //     filledQuantity: number;
+  //   }[]
+  // } = {
+  //   id: '',
+  //   shortOrderId: '',
+  //   fulfillments: null
+  // };
+
+  // React.useEffect(() => {
+  //   console.log({ order });
+  // }, [order]);
 
   return (
     <React.Fragment>
@@ -32,7 +50,9 @@ let Home: NextPage = () => {
       <NewTodo />
       <AnimatePresence>
         {status === "loading" ? <LoadingIndicator /> : null}
-        {status === "success" ? <TodoList todos={data?.data} /> : null}
+        {status === "success" && data?.data ? (
+          <TodoList todos={data?.data} />
+        ) : null}
         {status === "error" ? (
           <React.Fragment>
             {error?.response?.status === 404 ? (
